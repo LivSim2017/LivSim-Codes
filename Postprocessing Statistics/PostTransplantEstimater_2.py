@@ -8,8 +8,12 @@ import operator
 import sys
 import queue
 import pandas as pd
+import os
 from copy import deepcopy
 from matplotlib.dates import strpdate2num
+
+#change directory to input files location
+os.chdir("C:/Users/kbui1993/Desktop/Postprocessing Input Files/")
 
 #Prepare Converters
 def tf_convert(s):

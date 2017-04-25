@@ -6,10 +6,13 @@ import datetime
 import operator
 import sys
 import queue
+import os
 import pandas as pd
 from copy import deepcopy
 from matplotlib.dates import strpdate2num
 
+#change directory to input files location
+os.chdir("C:/Users/kbui1993/Desktop/Postprocessing Input Files/")
 
 #Prepare Converters
 def tf_convert(s):
