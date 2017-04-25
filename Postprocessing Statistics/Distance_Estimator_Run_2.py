@@ -6,6 +6,7 @@ import datetime
 import operator
 import sys
 import queue
+import os
 from copy import deepcopy
 import pandas as pd
 from matplotlib.dates import strpdate2num
@@ -30,7 +31,7 @@ def estimate_transport(transplants):
 	ndsa = 58
 
 	#load distance-time-mode data
-	data = nump.loadtxt("C:/Users/kbui1993/Documents/LivSim Codes/Postprocessing Statistics/distancetimes.txt")
+	data = nump.loadtxt("distancetimes.txt")
 
 	#Setup data
 	dis_data = [[[] for i in range(0,ndsa)] for j in range(0,ndsa)]
