@@ -6,13 +6,9 @@ import datetime
 import operator
 import sys
 import queue
-import os
 from copy import deepcopy
 import pandas as pd
 from matplotlib.dates import strpdate2num
-
-#change directory to input files location
-os.chdir("C:/Users/kbui1993/Desktop/Postprocessing Input Files/")
 
 def estimate_transport(transplants):
 	"""

@@ -36,6 +36,9 @@ if __name__ == "__main__":
 		print("Invalid directory")
 		quit()
 
+	#change directory to input files location
+	os.chdir("C:/Users/kbui1993/Desktop/Postprocessing Input Files/")
+
 	#create new statistics for given directory
 	create_new_stats(directory)
 
