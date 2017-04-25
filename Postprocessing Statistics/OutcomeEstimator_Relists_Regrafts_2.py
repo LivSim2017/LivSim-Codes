@@ -136,20 +136,20 @@ def estimate_post_retransplant_death(txids, doids):
 			tx_subset = tx_subset[tx_subset.iloc[:,0] == y]
 		
 			for n in range(0, len(donor_subset)):
-				lsampatid = donor_subset.iloc[n,3] #lsam patient id
-				lsamdonid = donor_subset.iloc[n,4] -1 #lsam donor id
+				lsampatid = int(donor_subset.iloc[n,3]) #lsam patient id
+				lsamdonid = int(donor_subset.iloc[n,4]) -1 #lsam donor id
 				lsamtxtime = donor_subset.iloc[n,2] #lsam transplant time
 
-				page = [int(patients[lsampatid][1] < 18), int((patients[lsampatid][1] >= 18 and patients[lsampatid][1] <25)),
-				int((patients[lsampatid][1] >= 25 and patients[lsampatid][1] <35)),
-				int((patients[lsampatid][1] >= 45 and patients[lsampatid][1] <55)),
-				int((patients[lsampatid][1] >= 55 and patients[lsampatid][1] <65)),
-				int((patients[lsampatid][1] >= 65))] #patient age
+				page = [1*(patients[lsampatid][1] < 18), 1*((patients[lsampatid][1] >= 18 and patients[lsampatid][1] <25)),
+				1*((patients[lsampatid][1] >= 25 and patients[lsampatid][1] <35)),
+				1*((patients[lsampatid][1] >= 45 and patients[lsampatid][1] <55)),
+				1*((patients[lsampatid][1] >= 55 and patients[lsampatid][1] <65)),
+				1*((patients[lsampatid][1] >= 65))] #patient age
 
-				dage = [int(donors[lsamdonid][0] < 18), int((donors[lsamdonid][0] >= 40 and donors[lsamdonid][0] <50)),
-				int((donors[lsamdonid][0] >= 50 and donors[lsamdonid][0] <60)),
-				int((donors[lsamdonid][0] >= 60 and donors[lsamdonid][0] <70)),
-				int((donors[lsamdonid][0] >= 70))] #donor age
+				dage = [1*(donors[lsamdonid][0] < 18), 1*((donors[lsamdonid][0] >= 40 and donors[lsamdonid][0] <50)),
+				1*((donors[lsamdonid][0] >= 50 and donors[lsamdonid][0] <60)),
+				1*((donors[lsamdonid][0] >= 60 and donors[lsamdonid][0] <70)),
+				1*((donors[lsamdonid][0] >= 70))] #donor age
 
 				#Obtain last status record before transplant
 				statuspat = is_patients[lsampatid]
@@ -188,12 +188,12 @@ def estimate_post_retransplant_death(txids, doids):
 					if svalues[m] < stepsurv[-1,0]:
 						svalues[m] = stepsurv[-1,1]
 						#deaths[m] = int(bool( nump.random.uniform(0,1,1) <=stepsurv[-1,2]  and svalues[m]/365 + txtimes[m]  <=maxtime))
-						deaths[m] = int(bool(  svalues[m]/365 + txtimes[m] -y <=maxtime))
+						deaths[m] = 1*(bool(  svalues[m]/365 + txtimes[m] -y <=maxtime))
 						break
 					elif svalues[m] < stepsurv[k-1,0] and svalues[m] >= stepsurv[k,0]:
 						svalues[m] = stepsurv[k,1]
 						#deaths[m] = int(bool( nump.random.uniform(0,1,1) <=stepsurv[k,2]  and svalues[m]/365 + txtimes[m]  <=maxtime))
-						deaths[m] = int(bool(  svalues[m]/365 + txtimes[m] -y <=maxtime))
+						deaths[m] = 1*(bool(  svalues[m]/365 + txtimes[m] -y <=maxtime))
 						break
 
 			#Total Deaths
