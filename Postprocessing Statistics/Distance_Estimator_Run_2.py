@@ -111,7 +111,7 @@ def estimate_transport(transplants):
 								count_helicopter = count_helicopter + 1
 								moment1_distance_helicopter = moment1_distance_helicopter + dis_data[i][j][randindex]
 								moment1_time_helicopter = moment1_time_helicopter + time_data[i][j][randindex]
-							elif(mode_data[i][j] == 2):
+							elif(mode_data[i][j][randindex] == 2):
 								count_airplane = count_airplane + 1
 								moment1_distance_airplane = moment1_distance_airplane + dis_data[i][j][randindex]
 								moment1_time_airplane = moment1_time_airplane + time_data[i][j][randindex]
