@@ -19,14 +19,17 @@ def create_new_stats(directory):
 	"""
 
 	#generate travel statistics
+	print("Generating Travel Statistics.")
 	Distance_Estimator_Run_2.output_distance_data(directory)
 	print("Travel Statistics Generated.")
 
 	#generate relist/regraft statistics
+	print("Generating Relist Statistics")
 	OutcomeEstimator_Relists_Regrafts_2.estimate_relist_outcome(directory)
 	print("Relist Statistics Generated")
 
 	#generate post-transplant statistics
+	print("Generating Post Transplant Statistics")
 	PostTransplantEstimater_2.estimate_post_transplant_outcome(directory)
 	print("Post Transplant Statistics Generated")
 

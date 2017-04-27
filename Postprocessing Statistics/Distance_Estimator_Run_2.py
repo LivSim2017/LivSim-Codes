@@ -46,8 +46,12 @@ def estimate_transport(transplants):
 		mode_data[opo][txdsa].append(data[i,4])
 
 	#Prepare Output
-	distances = []
-	times = []
+	distances_vehicle = []
+	distances_helicopter = []
+	distances_airplane = []
+	times_vehicle = []
+	times_helicopter = []
+	times_airplane = []	
 	drives =[]
 	helicopters = []
 	airplanes = []
@@ -74,8 +78,12 @@ def estimate_transport(transplants):
 		tx_total = nump.sum(tx_subset.sum())
 
 		#pre-initialize variables to store relevant values
-		moment1_distance = 0
-		moment1_time = 0
+		moment1_distance_vehicle = 0
+		moment1_distance_helicopter = 0
+		moment1_distance_airplane = 0
+		moment1_time_vehicle = 0
+		moment1_time_helicopter = 0
+		moment1_time_airplane = 0
 
 		count_drive = 0
 		count_helicopter = 0
@@ -90,30 +98,52 @@ def estimate_transport(transplants):
 					pass
 				else:
 					for k in range(0,int(tx_subset.iloc[i,j])):
-						#Select random donor_hospital and tx_ctr combination
 						if len(dis_data[i][j]) > 0:
+							#select DSA - donor hospital pair randomly
 							randindex = nump.random.choice(list(range(0,len(dis_data[i][j]))))
-
-							#Update Stats
-							moment1_distance = moment1_distance + dis_data[i][j][randindex]
-							moment1_time = moment1_time + time_data[i][j][randindex]
-
-							count_drive  =count_drive + int(mode_data[i][j][randindex]==0)
-							count_helicopter  =count_helicopter + int(mode_data[i][j][randindex]==1)
-							count_airplane  =count_airplane + int(mode_data[i][j][randindex]==2)
+							
+							#update stats
+							if(mode_data[i][j][randindex] == 0):
+								count_drive = count_drive + 1
+								moment1_distance_vehicle = moment1_distance_vehicle + dis_data[i][j][randindex]
+								moment1_time_vehicle = moment1_time_vehicle + time_data[i][j][randindex]
+							elif(mode_data[i][j][randindex] == 1):
+								count_helicopter = count_helicopter + 1
+								moment1_distance_helicopter = moment1_distance_helicopter + dis_data[i][j][randindex]
+								moment1_time_helicopter = moment1_time_helicopter + time_data[i][j][randindex]
+							elif(mode_data[i][j] == 2):
+								count_airplane = count_airplane + 1
+								moment1_distance_airplane = moment1_distance_airplane + dis_data[i][j][randindex]
+								moment1_time_airplane = moment1_time_airplane + time_data[i][j][randindex]
 
 		#store average statistics
-		distances.append(moment1_distance/tx_total)
-		times.append(moment1_time/tx_total)
+		distances_vehicle.append(moment1_distance_vehicle/count_drive)
+		distances_helicopter.append(moment1_distance_helicopter/count_helicopter)
+		distances_airplane.append(moment1_distance_airplane/count_airplane)
+
+		times_vehicle.append(moment1_time_vehicle/count_drive)
+		times_helicopter.append(moment1_time_helicopter/count_helicopter)
+		times_airplane.append(moment1_time_airplane/count_airplane)
+
 		drives.append(count_drive/tx_total)
 		helicopters.append(count_helicopter/tx_total)
 		airplanes.append(count_airplane/tx_total)
 
 	#convert to data frames
-	distances = pd.DataFrame(distances)
-	distances.columns = ['Average Distance Traveled']
-	times = pd.DataFrame(times)
-	times.columns = ['Average Time Traveled']
+	distances_vehicle = pd.DataFrame(distances_vehicle)
+	distances_vehicle.columns = ['Average Distance Traveled on Ground']
+	distances_helicopter = pd.DataFrame(distances_helicopter)
+	distances_helicopter.columns = ['Average Distance Traveled by Helicopter']
+	distances_airplane = pd.DataFrame(distances_airplane)
+	distances_airplane.columns = ['Average Distance Traveled by Airplane']
+
+	times_vehicle = pd.DataFrame(times_vehicle)
+	times_vehicle.columns = ['Average Time Traveled on Ground']
+	times_helicopter = pd.DataFrame(times_helicopter)
+	times_helicopter.columns = ['Average Time Traveled by Helicopter']
+	times_airplane = pd.DataFrame(times_airplane)
+	times_airplane.columns = ['Average Time Traveled by Airplane']
+
 	drives = pd.DataFrame(drives)
 	drives.columns = ['Percentage of Organ Traveled by Car']
 	helicopters = pd.DataFrame(helicopters)
@@ -122,7 +152,7 @@ def estimate_transport(transplants):
 	airplanes.columns = ['Percentage of Organ Traveled by Airplane']
 
 	#return results
-	return distances, times, drives, helicopters, airplanes
+	return distances_vehicle, distances_helicopter, distances_airplane, times_vehicle, times_helicopter, times_airplane, drives, helicopters, airplanes
 
 
 def output_distance_data(directory):
@@ -142,11 +172,15 @@ def output_distance_data(directory):
 	travel_stat = estimate_transport(transplants)
 
 	#write results to directory
-	travel_stat[0].to_csv(directory+ "AvgDistance.csv", sep = ',', encoding = 'utf-8', index = False)
-	travel_stat[1].to_csv(directory+ "AvgTime.csv", sep = ',', encoding = 'utf-8', index = False)
-	travel_stat[2].to_csv(directory+ "CarPercentage.csv", sep = ',', encoding = 'utf-8', index = False)
-	travel_stat[3].to_csv(directory+"HelicopterPercentage.csv", sep = ',', encoding = 'utf-8', index = False)
-	travel_stat[4].to_csv(directory+"AirplanePercentage.csv", sep = ',', encoding = 'utf-8', index = False)
+	travel_stat[0].to_csv(directory+"AvgDistanceVehicle.csv", sep = ',', encoding = 'utf-8', index = False)
+	travel_stat[1].to_csv(directory+"AvgDistanceHelicopter.csv", sep = ',', encoding = 'utf-8', index = False)
+	travel_stat[2].to_csv(directory+"AvgDistanceAirplane.csv", sep = ',', encoding = 'utf-8', index = False)
+	travel_stat[3].to_csv(directory+"AvgTimeVehicle.csv", sep = ',', encoding = 'utf-8', index = False)
+	travel_stat[4].to_csv(directory+"AvgTimeHelicopter.csv", sep = ',', encoding = 'utf-8', index = False)
+	travel_stat[5].to_csv(directory+"AvgTimeAirplane.csv", sep = ',', encoding = 'utf-8', index = False)
+	travel_stat[6].to_csv(directory+"CarPercentage.csv", sep = ',', encoding = 'utf-8', index = False)
+	travel_stat[7].to_csv(directory+"HelicopterPercentage.csv", sep = ',', encoding = 'utf-8', index = False)
+	travel_stat[8].to_csv(directory+"AirplanePercentage.csv", sep = ',', encoding = 'utf-8', index = False)
 
 
 
