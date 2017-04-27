@@ -165,11 +165,23 @@ median_meld_base_data = median_meld_base_data.iloc[1:,]
 std_median_meld_base_data = pd.read_csv(base_directory + "Output_meld_median_std.csv")
 std_median_meld_base_data = std_median_meld_base_data.iloc[1:,]
 
-#read in average transport distance for base case
-average_transport_distance_base_data = pd.read_csv(base_directory + "AvgDistance.csv")
+#read in average vehicle transport distance for base case
+average_vehicle_transport_distance_base_data = pd.read_csv(base_directory + "AvgDistanceVehicle.csv")
 
-#read in average transport time for base case
-average_transport_time_base_data = pd.read_csv(base_directory + "AvgTime.csv")
+#read in average helicopter transport distance for base case
+average_helicopter_transport_distance_base_data = pd.read_csv(base_directory + "AvgDistanceHelicopter.csv")
+
+#read in average airplane transport distance for base case
+average_airplane_transport_distance_base_data = pd.read_csv(base_directory + "AvgDistanceAirplane.csv")
+
+#read in average vehicle time for base case
+average_vehicle_transport_time_base_data = pd.read_csv(base_directory + "AvgTimeVehicle.csv")
+
+#read in average helicopter time for base case
+average_helicopter_transport_time_base_data = pd.read_csv(base_directory + "AvgTimeHelicopter.csv")
+
+#read in average airplane time for base case
+average_airplane_transport_time_base_data = pd.read_csv(base_directory + "AvgTimeAirplane.csv")
 
 #read in average percentage of organs transported by car for base case
 average_car_percentage_base_data = pd.read_csv(base_directory + "CarPercentage.csv")
@@ -187,8 +199,12 @@ mean_meld_data = []
 std_mean_meld_data = []
 median_meld_data = []
 std_median_meld_data = []
-avg_transport_distance_data = []
-avg_transport_time_data = []
+avg_vehicle_transport_distance_data = []
+avg_helicopter_transport_distance_data = []
+avg_airplane_transport_distance_data = []
+avg_vehicle_transport_time_data = []
+avg_helicopter_transport_time_data = []
+avg_airplane_transport_time_data = []
 avg_car_percentage_data = []
 avg_helicopter_data = []
 avg_airplane_data = []
@@ -226,13 +242,29 @@ for file in files:
     std_median_meld_case = std_median_meld_case.iloc[1:,]
     std_median_meld_data.append(std_median_meld_case)
 
-    #read in average transport distance data
-    average_transport_distance_case = pd.read_csv(file+"AvgDistance.csv")
-    avg_transport_distance_data.append(average_transport_distance_case)
+    #read in average vehicle transport distance data
+    average_vehicle_transport_distance_case = pd.read_csv(file+"AvgDistanceVehicle.csv")
+    avg_vehicle_transport_distance_data.append(average_vehicle_transport_distance_case)
 
-    #read in average transport time data
-    average_transport_time_case = pd.read_csv(file+"AvgTime.csv")
-    avg_transport_time_data.append(average_transport_time_case)
+    #read in average helicopter transport distance data
+    average_helicopter_transport_distance_case = pd.read_csv(file+"AvgDistanceHelicopter.csv")
+    avg_helicopter_transport_distance_data.append(average_helicopter_transport_distance_case)
+
+    #read in average airplane transport distance data
+    average_airplane_transport_distance_case = pd.read_csv(file+"AvgDistanceAirplane.csv")
+    avg_airplane_transport_distance_data.append(average_airplane_transport_distance_case)
+
+    #read in average vehicle transport time data
+    average_vehicle_transport_time_case = pd.read_csv(file+"AvgTimeVehicle.csv")
+    avg_vehicle_transport_time_data.append(average_vehicle_transport_time_case)
+
+    #read in average helicopter transport time data
+    average_helicopter_transport_time_case = pd.read_csv(file+"AvgTimeHelicopter.csv")
+    avg_helicopter_transport_time_data.append(average_helicopter_transport_time_case)
+
+    #read in average airplane transport time data
+    average_airplane_transport_time_case = pd.read_csv(file+"AvgTimeAirplane.csv")
+    avg_airplane_transport_time_data.append(average_airplane_transport_time_case)
 
     #read in average percentage of organs transported by car
     average_car_percentage_case = pd.read_csv(file+"CarPercentage.csv")
@@ -261,10 +293,18 @@ meld_median_diff_vector = []
 meld_median_diff_pvalue_vector = []
 std_median_meld_diff_vector = []
 std_median_meld_pvalue_vector = []
-avg_transport_distance_vector = []
-avg_transport_distance_pvalue_vector = []
-avg_transport_time_vector = []
-avg_transport_time_pvalue_vector = []
+avg_vehicle_transport_distance_vector = []
+avg_vehicle_transport_distance_pvalue_vector = []
+avg_vehicle_transport_time_vector = []
+avg_vehicle_transport_time_pvalue_vector = []
+avg_helicopter_transport_distance_vector = []
+avg_helicopter_transport_distance_pvalue_vector = []
+avg_helicopter_transport_time_vector = []
+avg_helicopter_transport_time_pvalue_vector = []
+avg_airplane_transport_distance_vector = []
+avg_airplane_transport_distance_pvalue_vector = []
+avg_airplane_transport_time_vector = []
+avg_airplane_transport_time_pvalue_vector = []
 avg_car_vector = []
 avg_car_pvalue_vector = []
 avg_helicopter_vector = []
@@ -306,15 +346,35 @@ for i in range(0,len(files)):
     std_median_meld_diff_vector.append(std_meld_median_diff_result[0])
     std_median_meld_pvalue_vector.append(std_meld_median_diff_result[1])
 
-    #compute the mean difference of average transport distance
-    avg_transport_distance_result = compute_diff_mean(average_transport_distance_base_data, avg_transport_distance_data[i])
-    avg_transport_distance_vector.append(avg_transport_distance_result[0])
-    avg_transport_distance_pvalue_vector.append(avg_transport_distance_result[1])
+    #compute the mean difference of average vehicle transport distance
+    avg_vehicle_transport_distance_result = compute_diff_mean(average_vehicle_transport_distance_base_data, avg_vehicle_transport_distance_data[i])
+    avg_vehicle_transport_distance_vector.append(avg_vehicle_transport_distance_result[0])
+    avg_vehicle_transport_distance_pvalue_vector.append(avg_vehicle_transport_distance_result[1])
 
-    #compute the mean difference of average transport time
-    avg_transport_time_result = compute_diff_mean(average_transport_time_base_data, avg_transport_time_data[i])
-    avg_transport_time_vector.append(avg_transport_time_result[0])
-    avg_transport_time_pvalue_vector.append(avg_transport_time_result[1])
+    #compute the mean difference of average helicopter transport distance
+    avg_helicopter_transport_distance_result = compute_diff_mean(average_helicopter_transport_distance_base_data, avg_helicopter_transport_distance_data[i])
+    avg_helicopter_transport_distance_vector.append(avg_helicopter_transport_distance_result[0])
+    avg_helicopter_transport_distance_pvalue_vector.append(avg_helicopter_transport_distance_result[1])
+
+    #compute the mean difference of average airplane transport distance
+    avg_airplane_transport_distance_result = compute_diff_mean(average_airplane_transport_distance_base_data, avg_airplane_transport_distance_data[i])
+    avg_airplane_transport_distance_vector.append(avg_airplane_transport_distance_result[0])
+    avg_airplane_transport_distance_pvalue_vector.append(avg_airplane_transport_distance_result[1])
+
+    #compute the mean difference of average vehicle transport time
+    avg_vehicle_transport_time_result = compute_diff_mean(average_vehicle_transport_time_base_data, avg_vehicle_transport_time_data[i])
+    avg_vehicle_transport_time_vector.append(avg_vehicle_transport_time_result[0])
+    avg_vehicle_transport_time_pvalue_vector.append(avg_vehicle_transport_time_result[1])
+
+    #compute the mean difference of average helicopter transport time
+    avg_helicopter_transport_time_result = compute_diff_mean(average_helicopter_transport_time_base_data, avg_helicopter_transport_time_data[i])
+    avg_helicopter_transport_time_vector.append(avg_helicopter_transport_time_result[0])
+    avg_helicopter_transport_time_pvalue_vector.append(avg_helicopter_transport_time_result[1])
+
+    #compute the mean difference of average airplane transport time
+    avg_airplane_transport_time_result = compute_diff_mean(average_airplane_transport_time_base_data, avg_airplane_transport_time_data[i])
+    avg_airplane_transport_time_vector.append(avg_airplane_transport_time_result[0])
+    avg_airplane_transport_time_pvalue_vector.append(avg_airplane_transport_time_result[1])
 
     #compute the mean difference of avg percentage of organs transported by car
     avg_car_result = compute_diff_mean(average_car_percentage_base_data, avg_car_percentage_data[i])
@@ -348,10 +408,18 @@ summary.append(meld_median_diff_vector)
 summary.append(meld_median_diff_pvalue_vector)
 summary.append(std_median_meld_diff_vector)
 summary.append(std_median_meld_pvalue_vector)
-summary.append(avg_transport_distance_vector)
-summary.append(avg_transport_distance_pvalue_vector)
-summary.append(avg_transport_time_vector)
-summary.append(avg_transport_time_pvalue_vector)
+summary.append(avg_vehicle_transport_distance_vector)
+summary.append(avg_vehicle_transport_distance_pvalue_vector)
+summary.append(avg_helicopter_transport_distance_vector)
+summary.append(avg_helicopter_transport_distance_pvalue_vector)
+summary.append(avg_airplane_transport_distance_vector)
+summary.append(avg_airplane_transport_distance_pvalue_vector)
+summary.append(avg_vehicle_transport_time_vector)
+summary.append(avg_vehicle_transport_time_pvalue_vector)
+summary.append(avg_helicopter_transport_time_vector)
+summary.append(avg_helicopter_transport_time_pvalue_vector)
+summary.append(avg_airplane_transport_time_vector)
+summary.append(avg_airplane_transport_time_pvalue_vector)
 summary.append(avg_car_vector)
 summary.append(avg_car_pvalue_vector)
 summary.append(avg_helicopter_vector)
@@ -372,8 +440,12 @@ rows = ['Annualized Deaths', 'Annualized Deaths p-value', 'Annualized Waitlist R
         'DSA Mean Transplant Standard Deviation p-value', 'DSA Median Transplant MELD',\
         'DSA Median Transplant MELD p-value', 'DSA Median Transplant MELD Standard Deviation',\
         'DSA Median Transplant MELD Standard Deviation p-value',\
-        'Average Organ Transport Distance', 'Average Organ Transport Distance p-value',\
-        'Average Organ Transport Time', 'Average Organ Transport Time p-value',\
+        'Average Organ Vehicle Transport Distance', 'Average Organ Vehicle Transport Distance p-value',\
+        'Average Organ Helicopter Transport Distance', 'Average Organ Helicopter Transport Distance p-value',\
+        'Average Organ Airplane Transport Distance', 'Average Organ Airplane Transport Distance p-value',\
+        'Average Organ Vehicle Transport Time', 'Average Organ Vehicle Transport Time p-value',\
+        'Average Organ Helicopter Transport Time', 'Average Organ Helicopter Transport Time p-value',\
+        'Average Organ Airplane Transport Time', 'Average Organ Airplane Transport Time p-value',\
         'Average Percentage Transported by Ground Vehicle', 'Average Percentage Transported by Ground Vehicle p-value',\
         'Average Percentage Transported by Helicopter', 'Average Percentage Transported by Helicopter p-value',\
         'Average Percentage Transported by Airplane', 'Average Percentage Transported by Airplane p-value']
