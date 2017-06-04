@@ -1,3 +1,4 @@
+#!/sscc/opt/anaconda3/bin/python
 import heapq
 import numpy as nump
 import scipy as scip
@@ -19,9 +20,12 @@ import event
 maxtime = float(sys.argv[1])
 nreps = int(sys.argv[2])
 policy = ast.literal_eval(sys.argv[3])
-share = ast.literal_eval(sys.argv[4])
+ShareU = ast.literal_eval(sys.argv[4])
+ShareL = ast.literal_eval(sys.argv[5])
 
-directory = sys.argv[5]
+localboost = int(sys.argv[6])
+
+directory = sys.argv[7]
 
 
 if __name__ =="__main__":
@@ -42,11 +46,8 @@ if __name__ =="__main__":
 		print("Invalid policy input.")
 		quit()
 
-	if len(share) != 2:
-		print("Invalid policy input.")
-		quit()
-
 	if os.path.exists(directory) is False:
+		print(directory)
 		print("Invalid directory.")
 		quit()
 
@@ -69,8 +70,9 @@ if __name__ =="__main__":
 	    Sim.sodium = policy[1]
 	    Sim.capanddelay = policy[2]
 	    Sim.spartners = policy[3]
-	    Sim.ShareU = share[0]
-	    Sim.ShareL = share[1]
+	    Sim.ShareU = ShareU
+	    Sim.ShareL = ShareL
+	    Sim.localboost = localboost
 
 	    #Initialize Statistics
 	    Stat = engine.SimStat()

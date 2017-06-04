@@ -296,7 +296,7 @@ def OrganArrival(organinfo, Sim, Stat, OPTN, Regions, SharingPartners, Patients_
                 if willrelist ==0 and patient.Relist ==0:
                     regtx =0
                     nattx = 0
-                    if patient.DSA != neworgan.DSA and Regions[neworgan.DSA,patient.DSA] ==1:
+                    if patient.DSA != neworgan.DSA and (Regions[neworgan.DSA,patient.DSA] ==1 or SharingPartners[neworgan.DSA, patient.DSA] == 1):
                         regtx =1 #patient had regional transplant
                     elif patient.DSA != neworgan.DSA:
                         nattx=1 #patient had national transplant
@@ -317,7 +317,7 @@ def OrganArrival(organinfo, Sim, Stat, OPTN, Regions, SharingPartners, Patients_
                     regtx =0 #indicator for regional transplant
                     nattx = 0 #indicator for national transplant
 
-                    if patient.DSA != neworgan.DSA and Regions[neworgan.DSA,patient.DSA] ==1:
+                    if patient.DSA != neworgan.DSA and (Regions[neworgan.DSA,patient.DSA] ==1 or SharingPartners[neworgan.DSA, patient.DSA] == 1):
                         regtx =1 #patient had regional transplant
                     elif patient.DSA != neworgan.DSA:
                         nattx=1 #patient had national transplant

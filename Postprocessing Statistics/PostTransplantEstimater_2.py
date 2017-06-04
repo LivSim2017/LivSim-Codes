@@ -66,7 +66,7 @@ def estimate_post_transplant_death(txids, doids):
 	stepsurv = nump.loadtxt("stepsurvival.txt")
 
 	#Setting
-	nreps = 5 # number of replications
+	nreps = 1 # number of replications
 	maxtime = 5 #maxtime of survival
 	output_totals = []
 
@@ -81,11 +81,11 @@ def estimate_post_transplant_death(txids, doids):
 
 			#get donors of replication i and by year y
 			donor_subset = doids[doids.iloc[:,1] == i+1]
-			donor_subset = doids[doids.iloc[:,0] == y]
+			donor_subset = donor_subset[donor_subset.iloc[:,0] == y]
 
 			#get transplant patient of replication i
 			tx_subset = txids[txids.iloc[:,1] == i+1]
-			tx_subset = txids[txids.iloc[:,0] == y]
+			tx_subset = tx_subset[tx_subset.iloc[:,0] == y]
 
 			for n in range(0, len(donor_subset)):
 				lsampatid = int(donor_subset.iloc[n,3]) #lsam patient id
@@ -144,12 +144,12 @@ def estimate_post_transplant_death(txids, doids):
 					if svalues[m] < stepsurv[-1,0]:
 						svalues[m] = stepsurv[-1,1]
 						#deaths[m] = int(bool( nump.random.uniform(0,1,1) <=stepsurv[-1,2]  and svalues[m]/365 + txtimes[m]  <=maxtime))
-						deaths[m] = int(bool(  svalues[m]/365 + txtimes[m] -y  <=maxtime))
+						deaths[m] = int(bool(  svalues[m]/365 + txtimes[m]  <=maxtime))
 						break
 					elif svalues[m] < stepsurv[k-1,0] and svalues[m] >= stepsurv[k,0]:
 						svalues[m] = stepsurv[k,1]
 						#deaths[m] = int(bool( nump.random.uniform(0,1,1) <=stepsurv[k,2]  and svalues[m]/365 + txtimes[m]  <=maxtime))
-						deaths[m] = int(bool(  svalues[m]/365 + txtimes[m] -y <=maxtime))
+						deaths[m] = int(bool(  svalues[m]/365 + txtimes[m] <=maxtime))
 						break
 
 			#Total Deaths

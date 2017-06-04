@@ -1,3 +1,4 @@
+#!/sscc/opt/anaconda3/bin/python
 import numpy as nump
 
 ndsa = 58 #number of DSAs
@@ -40,7 +41,7 @@ class G:
     ShareU = 35 #threshold for "Share35 Policy"
     ShareL = 15 #threshold for "Share15" Policy
 
-    localboost = nump.loadtxt("C:/Users/kbui1993/Desktop/LivSim(Base Case)/Input/pop_dense.txt")   #MELD score boost for local patients
+    localboost = 0   #MELD score boost for local patients
     regionalboost = 0 #MELD score boost for regional patients
 
 

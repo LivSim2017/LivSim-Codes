@@ -118,11 +118,11 @@ def estimate_post_retransplant_death(txids, doids):
 
 	#Setting
 	nreps = 5 #number of replications
-	maxtime = 1 #maxtime of survival
+	maxtime = 5 #maxtime of survival
 	output_totals = [] #preinitialize list to record number of deaths
 
 	for i in range(0,nreps):
-		for y in range(0,5):
+		for y in range(0,maxtime):
 			#Form survival dataset
 			survdata = nump.empty([1,50])
 			txtimes = nump.empty([1,1])
@@ -188,12 +188,12 @@ def estimate_post_retransplant_death(txids, doids):
 					if svalues[m] < stepsurv[-1,0]:
 						svalues[m] = stepsurv[-1,1]
 						#deaths[m] = int(bool( nump.random.uniform(0,1,1) <=stepsurv[-1,2]  and svalues[m]/365 + txtimes[m]  <=maxtime))
-						deaths[m] = 1*(bool(  svalues[m]/365 + txtimes[m] -y <=maxtime))
+						deaths[m] = 1*(bool(  svalues[m]/365 + txtimes[m] <=maxtime))
 						break
 					elif svalues[m] < stepsurv[k-1,0] and svalues[m] >= stepsurv[k,0]:
 						svalues[m] = stepsurv[k,1]
 						#deaths[m] = int(bool( nump.random.uniform(0,1,1) <=stepsurv[k,2]  and svalues[m]/365 + txtimes[m]  <=maxtime))
-						deaths[m] = 1*(bool(  svalues[m]/365 + txtimes[m] -y <=maxtime))
+						deaths[m] = 1*(bool(  svalues[m]/365 + txtimes[m] <=maxtime))
 						break
 
 			#Total Deaths

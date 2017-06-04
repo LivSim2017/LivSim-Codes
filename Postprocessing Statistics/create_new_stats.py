@@ -29,9 +29,9 @@ def create_new_stats(directory):
 	print("Relist Statistics Generated")
 
 	#generate post-transplant statistics
-	print("Generating Post Transplant Statistics")
-	PostTransplantEstimater_2.estimate_post_transplant_outcome(directory)
-	print("Post Transplant Statistics Generated")
+	#print("Generating Post Transplant Statistics")
+	#PostTransplantEstimater_2.estimate_post_transplant_outcome(directory)
+	#print("Post Transplant Statistics Generated")
 
 if __name__ == "__main__":
 	#validate the input
