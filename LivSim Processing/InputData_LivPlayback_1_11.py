@@ -1,9 +1,15 @@
+#This module sets up and initializes the input data for LSIM
+
+#import library
 import entity
 
-#This module sets up and initializes the input data for LSIM
+#########################################################Setting########################################################
 ndsa = 58 #number of DSAs
 i_initial = 1 #Use initial waiting list 1=yes 0=no
 exclude_hi_pr =0 #1=Exclude Hawaii and Puerto Rico
+########################################################################################################################
+
+###################################################Uploading Input Files################################################
 print("Loading file")
 #DSA Geographic Relation Data
 Regions = nump.loadtxt("C:/Users/kbui1993/Desktop/NewLivSimCode/Input/Input_Geography.txt")
@@ -190,7 +196,4 @@ print("Waitlist_matchmeld.txt loaded.")
 
 print("Simulation Input Complete. Starting simulation @ " ,datetime.datetime.now().time())
 
-
-
-
-
+########################################################################################################################

@@ -50,6 +50,9 @@ if __name__ =="__main__":
 		print(directory)
 		print("Invalid directory.")
 		quit()
+	if directory[-1] is not "/":
+		print("Does not have slash at the end. Please add.")
+		quit()
 
 
 	Sim = engine.G()
