@@ -436,14 +436,14 @@ summary.columns = cases
 #name the rows
 rows = ['Annualized Deaths', 'Annualized Deaths p-value', 'Annualized Waitlist Removals',\
         'Annualized Waitlist Removals p-value', 'DSA Mean Transplant MELD', \
-        'DSA Mean Transplant MELD p-value', 'DSA Mean Transplant Standard Deviation',\
-        'DSA Mean Transplant Standard Deviation p-value', 'DSA Median Transplant MELD',\
+        'DSA Mean Transplant MELD p-value', 'DSA Mean Transplant MELD Standard Deviation',\
+        'DSA Mean Transplant MELD Standard Deviation p-value', 'DSA Median Transplant MELD',\
         'DSA Median Transplant MELD p-value', 'DSA Median Transplant MELD Standard Deviation',\
         'DSA Median Transplant MELD Standard Deviation p-value',\
-        'Average Organ Vehicle Transport Distance', 'Average Organ Vehicle Transport Distance p-value',\
+        'Average Organ Ground Vehicle Transport Distance', 'Average Organ Ground Vehicle Transport Distance p-value',\
         'Average Organ Helicopter Transport Distance', 'Average Organ Helicopter Transport Distance p-value',\
         'Average Organ Airplane Transport Distance', 'Average Organ Airplane Transport Distance p-value',\
-        'Average Organ Vehicle Transport Time', 'Average Organ Vehicle Transport Time p-value',\
+        'Average Organ Ground Vehicle Transport Time', 'Average Organ Ground Vehicle Transport Time p-value',\
         'Average Organ Helicopter Transport Time', 'Average Organ Helicopter Transport Time p-value',\
         'Average Organ Airplane Transport Time', 'Average Organ Airplane Transport Time p-value',\
         'Average Percentage Transported by Ground Vehicle', 'Average Percentage Transported by Ground Vehicle p-value',\
