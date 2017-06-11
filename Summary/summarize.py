@@ -8,6 +8,10 @@ import pandas as pd
 import numpy as np
 from scipy.stats import t
 
+base_directory = "C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2Old)/base/"
+
+output_directory = "C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2Old)/"
+
 #list of cases
 cases = ['SRTR',\
          'Share35 Share15 (Boostingv2Old)',\
@@ -16,12 +20,8 @@ cases = ['SRTR',\
          'Share37 Share15 (Boostingv2Old)',\
          'Share37 Share18 (Boostingv2Old)',\
          'Share37 Share20 (Boostingv2Old)']
-
-base_directory = "C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2Old)/base/"
-
-output_directory = "C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2Old)/"
          
-#list of files
+#list of directories corresponding to the cases
 files = ['C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2Old)/SRTR/',\
          'C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2Old)/Share35_Share15_5boost/',\
              'C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2Old)/Share35_Share18_5boost/',\
