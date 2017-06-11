@@ -26,14 +26,16 @@ cases = ['SRTR (Boostingv2New)',\
 'Share37 Share18 (Boostingv2New)',\
 'Share37 Share20 (Boostingv2New)']
 
+base_directory = "C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2New)/base/"
+
 #list of files
-files = ['C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2New)/SRTR/RawOutput_DSAs.csv',\
-             'C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2New)/Share35_Share15_5boost/RawOutput_DSAs.csv',\
-             'C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2New)/Share35_Share18_5boost/RawOutput_DSAs.csv',\
-             'C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2New)/Share35_Share20_5boost/RawOutput_DSAs.csv',\
-             'C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2New)/Share37_Share15_5boost/RawOutput_DSAs.csv',\
-             'C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2New)/Share37_Share18_5boost/RawOutput_DSAs.csv',\
-             'C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2New)/Share37_Share20_5boost/RawOutput_DSAs.csv']
+files = ['C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2New)/SRTR/',\
+             'C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2New)/Share35_Share15_5boost/',\
+             'C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2New)/Share35_Share18_5boost/',\
+             'C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2New)/Share35_Share20_5boost/',\
+             'C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2New)/Share37_Share15_5boost/',\
+             'C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2New)/Share37_Share18_5boost/',\
+             'C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2New)/Share37_Share20_5boost/']
 
 def compute_vol_diff(base_case, new_case):
     """
@@ -101,7 +103,7 @@ def compute_percentile(new_case):
 base_data = []
 
 #open file containing the DSA matrix for the base case
-with open('C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2New)/base/RawOutput_DSAs.csv', encoding ='utf-8') as csvfile:
+with open(base_directory + 'RawOutput_DSAs.csv', encoding ='utf-8') as csvfile:
     data = csv.reader(csvfile, delimiter = ',')
     for row in data:
         base_data.append(row)
@@ -124,7 +126,7 @@ for file in files:
     input_data = []
     
     #open a file and record DSA matrix
-    with open(file) as csvfile:
+    with open(file + "RawOutput_DSAs.csv") as csvfile:
         data = csv.reader(csvfile, delimiter = ',')
         for row in data:
             input_data.append(row)

@@ -18,6 +18,8 @@ cases = ['SRTR',\
          'Share37 Share20 (Boostingv2Old)']
 
 base_directory = "C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2Old)/base/"
+
+output_directory = "C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2Old)/"
          
 #list of files
 files = ['C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2Old)/SRTR/',\
@@ -451,4 +453,4 @@ rows = ['Annualized Deaths', 'Annualized Deaths p-value', 'Annualized Waitlist R
         'Average Percentage Transported by Airplane', 'Average Percentage Transported by Airplane p-value']
 summary.index = rows
 
-summary.to_csv("C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2Old)/summary.csv")
+summary.to_csv(output_directory + "summary.csv")
