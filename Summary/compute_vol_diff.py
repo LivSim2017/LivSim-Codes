@@ -17,6 +17,13 @@ current_DSA = ['ALOB', 'AROR', 'AZOB', 'CADN', 'CAGS', \
 			   'TXGC', 'TXSA', 'TXSB', 'UTOP', 'VATB', \
 			   'WALC', 'WIDN', 'WIUW']
 
+
+#specify directory of default case
+base_directory = "C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2New)/base/"
+
+#specify where to save files to
+output_directory = "C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2New)/"
+
 #list of cases
 cases = ['SRTR (Boostingv2New)',\
          'Share35 Share15 (Boostingv2New)',\
@@ -26,9 +33,7 @@ cases = ['SRTR (Boostingv2New)',\
 'Share37 Share18 (Boostingv2New)',\
 'Share37 Share20 (Boostingv2New)']
 
-base_directory = "C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2New)/base/"
-
-#list of files
+#list of directories corresponding to the cases
 files = ['C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2New)/SRTR/',\
              'C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2New)/Share35_Share15_5boost/',\
              'C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2New)/Share35_Share18_5boost/',\
@@ -164,5 +169,5 @@ local_result.index = cases
 global_result.index = cases
     
 #save as csv files
-local_result.to_csv("C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2New)/DSA_Level_Transplant_Volume_Summary.csv")
-global_result.to_csv("C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2New)/General_Transplant_Volume_Summary.csv")
+local_result.to_csv(output_directory + "DSA_Level_Transplant_Volume_Summary.csv")
+global_result.to_csv(output_directory + "General_Transplant_Volume_Summary.csv")
