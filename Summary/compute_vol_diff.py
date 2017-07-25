@@ -3,6 +3,15 @@ import csv
 import pandas as pd
 import numpy as np
 
+
+#specify directory of default case
+base_directory = "C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2New)/base/"
+
+#specify where to save files to
+output_directory = "C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2New)/"
+
+
+
 #list of current DSA
 current_DSA = ['ALOB', 'AROR', 'AZOB', 'CADN', 'CAGS', \
 			   'CAOP', 'CASD', 'CORS', 'CTOP', 'DCTC',\
@@ -17,12 +26,6 @@ current_DSA = ['ALOB', 'AROR', 'AZOB', 'CADN', 'CAGS', \
 			   'TXGC', 'TXSA', 'TXSB', 'UTOP', 'VATB', \
 			   'WALC', 'WIDN', 'WIUW']
 
-
-#specify directory of default case
-base_directory = "C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2New)/base/"
-
-#specify where to save files to
-output_directory = "C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2New)/"
 
 #list of cases
 cases = ['SRTR (Boostingv2New)',\

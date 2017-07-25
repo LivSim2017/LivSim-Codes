@@ -8,27 +8,97 @@ import pandas as pd
 import numpy as np
 from scipy.stats import t
 
-base_directory = "C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2Old)/base/"
-
-output_directory = "C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2Old)/"
+#Change Directory Here.
+base_directory = "C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/base(cap_and_delay)/"
+output_directory = "C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/"
 
 #list of cases
-cases = ['SRTR',\
-         'Share35 Share15 (Boostingv2Old)',\
-         'Share35 Share18 (Boostingv2Old)',\
-         'Share35 Share20 (Boostingv2Old)',\
-         'Share37 Share15 (Boostingv2Old)',\
-         'Share37 Share18 (Boostingv2Old)',\
-         'Share37 Share20 (Boostingv2Old)']
+cases = ['SRTR',
+         'Share35_Share15_0boost(8district)',\
+         'Share35_Share15_3boost(8district)',\
+         'Share35_Share15_5boost(8district)',\
+         'Share35_Share18_3boost(8district)',\
+         'Share35_Share20_5boost(8district)',\
+         'Share35_Share15_0boost(LivSim(400))',\
+         'Share35_Share15_3boost(LivSim(400))',\
+         'Share35_Share15_5boost(LivSim(400))',\
+         'Share35_Share18_0boost(LivSim(400))',\
+         'Share35_Share18_3boost(LivSim(400))',\
+         'Share35_Share18_5boost(LivSim(400))',\
+         'Share35_Share20_0boost(LivSim(400))',\
+         'Share35_Share20_3boost(LivSim(400))',\
+         'Share35_Share20_5boost(LivSim(400))',\
+         'Share35_Share22_0boost(LivSim(400))',\
+         'Share35_Share22_3boost(LivSim(400))',\
+         'Share35_Share22_5boost(LivSim(400))',\
+         'Share35_Share15_0boost(LivSim(500))',\
+         'Share35_Share15_3boost(LivSim(500))',\
+         'Share35_Share15_5boost(LivSim(500))',\
+         'Share35_Share18_0boost(LivSim(500))',\
+         'Share35_Share18_3boost(LivSim(500))',\
+         'Share35_Share18_5boost(LivSim(500))',\
+         'Share35_Share20_0boost(LivSim(500))',\
+         'Share35_Share20_3boost(LivSim(500))',\
+         'Share35_Share20_5boost(LivSim(500))',\
+         'Share35_Share22_0boost(LivSim(500))',\
+         'Share35_Share22_3boost(LivSim(500))',\
+         'Share35_Share22_5boost(LivSim(500))',\
+         'Share35_Share15_0boost(LivSim(600))',\
+         'Share35_Share15_3boost(LivSim(600))',\
+         'Share35_Share15_5boost(LivSim(600))',\
+         'Share35_Share18_0boost(LivSim(600))',\
+         'Share35_Share18_3boost(LivSim(600))',\
+         'Share35_Share18_5boost(LivSim(600))',\
+         'Share35_Share20_0boost(LivSim(600))',\
+         'Share35_Share20_3boost(LivSim(600))',\
+         'Share35_Share20_5boost(LivSim(600))',\
+         'Share35_Share22_0boost(LivSim(600))',\
+         'Share35_Share22_3boost(LivSim(600))',\
+         'Share35_Share22_5boost(LivSim(600))']
          
-#list of directories corresponding to the cases
-files = ['C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2Old)/SRTR/',\
-         'C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2Old)/Share35_Share15_5boost/',\
-             'C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2Old)/Share35_Share18_5boost/',\
-             'C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2Old)/Share35_Share20_5boost/',\
-              'C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2Old)/Share37_Share15_5boost/',\
-             'C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2Old)/Share37_Share18_5boost/',\
-             'C:/Users/kbui1993/Desktop/Results - Copy/Liver Transplant (Boostingv2Old)/Share37_Share20_5boost/']
+#list of files
+files = ['C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/SRTR/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/8district/Share35_Share15_0boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/8district/Share35_Share15_3boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/8district/Share35_Share15_5boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/8district/Share35_Share18_3boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/8district/Share35_Share20_5boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(400)/Share35_Share15_0boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(400)/Share35_Share15_3boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(400)/Share35_Share15_5boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(400)/Share35_Share18_0boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(400)/Share35_Share18_3boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(400)/Share35_Share18_5boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(400)/Share35_Share20_0boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(400)/Share35_Share20_3boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(400)/Share35_Share20_5boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(400)/Share35_Share22_0boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(400)/Share35_Share22_3boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(400)/Share35_Share22_5boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(500)/Share35_Share15_0boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(500)/Share35_Share15_3boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(500)/Share35_Share15_5boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(500)/Share35_Share18_0boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(500)/Share35_Share18_3boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(500)/Share35_Share18_5boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(500)/Share35_Share20_0boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(500)/Share35_Share20_3boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(500)/Share35_Share20_5boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(500)/Share35_Share22_0boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(500)/Share35_Share22_3boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(500)/Share35_Share22_5boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(600)/Share35_Share15_0boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(600)/Share35_Share15_3boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(600)/Share35_Share15_5boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(600)/Share35_Share18_0boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(600)/Share35_Share18_3boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(600)/Share35_Share18_5boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(600)/Share35_Share20_0boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(600)/Share35_Share20_3boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(600)/Share35_Share20_5boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(600)/Share35_Share22_0boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(600)/Share35_Share22_3boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(600)/Share35_Share22_5boost/']
 
 def compute_waitlist_death_diff(base_case, new_case):
     """
@@ -143,13 +213,25 @@ def compute_diff_mean(base_case, new_case):
     #return result
     return diff, p_value
 
-#read in total number of deaths for base case
+#read in total number of waitlist deaths for base case
 death_base_case = pd.read_csv(base_directory + "Output_deaths.csv")
 death_base_case = death_base_case.iloc[1:,0]
 
 #read in waitlist removals for base case
 waitlist_removal_base_case = pd.read_csv(base_directory + "RawOutput_yremoved.csv")
 waitlist_removal_base_case = waitlist_removal_base_case.iloc[1:,3:]
+
+#read in total number of post-transplant deaths for base case
+posttx_death_base_case = pd.read_csv(base_directory + "Output_post_transplant_deaths.csv")
+posttx_death_base_case = posttx_death_base_case.iloc[:,1]
+
+#read in total number of retransplant deaths for base case
+retx_death_base_case = pd.read_csv(base_directory + "Output_post_transplant_deaths_regrafts.csv")
+retx_death_base_case = retx_death_base_case.iloc[:,1]
+
+#read in total number of rewaitlist deaths for base case
+rewaitlist_death_base_case = pd.read_csv(base_directory + "Output_waitlistrelist_deaths.csv")
+rewaitlist_death_base_case = rewaitlist_death_base_case.iloc[:,1]
 
 #read in mean meld for base case
 mean_meld_base_data = pd.read_csv(base_directory + "Output_meld_disparity_mean.csv")
@@ -195,8 +277,11 @@ average_helicopter_percentage_base_data = pd.read_csv(base_directory + "Helicopt
 average_airplane_percentage_base_data = pd.read_csv(base_directory + "AirplanePercentage.csv")
 
 #preinitialize several lists to store data for other cases
-num_of_deaths = []
+num_of_waitlist_deaths = []
 waitlist_removals = []
+num_of_posttx_deaths = []
+num_of_retx_deaths = []
+num_of_rewaitlist_deaths = []
 mean_meld_data = []
 std_mean_meld_data = []
 median_meld_data = []
@@ -214,15 +299,30 @@ avg_airplane_data = []
 #begin reading in other cases
 for file in files:
     
-    #read in number of deaths
+    #read in number of waitlist deaths
     death_case_data = pd.read_csv(file+"Output_deaths.csv")
     death_case_data = death_case_data.iloc[1:,0]    
-    num_of_deaths.append(death_case_data)
+    num_of_waitlist_deaths.append(death_case_data)
     
     #read in waitlist removals
     waitlist_case_data = pd.read_csv(file+"RawOutput_yremoved.csv")
     waitlist_case_data = waitlist_case_data.iloc[1:,3:]
-    waitlist_removals.append(waitlist_case_data)    
+    waitlist_removals.append(waitlist_case_data)
+
+    #read in total number of post-transplant deaths for base case
+    posttx_death_case = pd.read_csv(file + "Output_post_transplant_deaths.csv")
+    posttx_death_case = posttx_death_case.iloc[:,1]
+    num_of_posttx_deaths.append(posttx_death_case)
+
+    #read in total number of retransplant deaths for base case
+    retx_death_case = pd.read_csv(file + "Output_post_transplant_deaths_regrafts.csv")
+    retx_death_case = retx_death_case.iloc[:,1]
+    num_of_retx_deaths.append(retx_death_case)
+
+    #read in total number of rewaitlist deaths for base case
+    rewaitlist_death_case = pd.read_csv(file + "Output_waitlistrelist_deaths.csv")
+    rewaitlist_death_case = rewaitlist_death_case.iloc[:,1]
+    num_of_rewaitlist_deaths.append(rewaitlist_death_case)
 
     #read in mean meld for a case
     mean_meld_case_data = pd.read_csv(file+"Output_meld_disparity_mean.csv")
@@ -287,6 +387,12 @@ death_diff_vector = []
 death_pvalue_vector = []
 waitlist_removal_mean_diff_vector = []
 waitlist_removal_mean_diff_pvalue_vector = []
+posttx_death_vector = []
+posttx_death_pvalue = []
+retx_death_vector = []
+retx_death_pvalue = []
+rewaitlist_death_vector = []
+rewaitlist_death_pvalue = []
 meld_mean_diff_vector = []
 meld_mean_diff_pvalue_vector = []
 std_meld_mean_diff_vector = []
@@ -317,17 +423,31 @@ avg_airplane_pvalue_vector = []
 #begin computing mean differences
 for i in range(0,len(files)):
     
-    #compute the difference of death and p-value
-    death_result = compute_waitlist_death_diff(death_base_case, num_of_deaths[i])
+    #compute the difference of waitlist death and p-value
+    death_result = compute_waitlist_death_diff(death_base_case, num_of_waitlist_deaths[i])
     death_diff_vector.append(death_result[0])
     death_pvalue_vector.append(death_result[1])
-    
     
     #compute the mean difference of waitlist removals and the p-value
     waitlist_removal_result = compute_waitlist_removal_diff(waitlist_removal_base_case, waitlist_removals[i])
     waitlist_removal_mean_diff_vector.append(waitlist_removal_result[0])
     waitlist_removal_mean_diff_pvalue_vector.append(waitlist_removal_result[1])
-    
+
+    #compute the mean difference of posttx death and p-value
+    posttx_death_result = compute_waitlist_death_diff(posttx_death_base_case, num_of_posttx_deaths[i])
+    posttx_death_vector.append(posttx_death_result[0])
+    posttx_death_pvalue.append(posttx_death_result[1])
+
+    #compute the mean difference of retransplant death and p-value
+    retx_death_result = compute_waitlist_death_diff(retx_death_base_case, num_of_retx_deaths[i])
+    retx_death_vector.append(retx_death_result[0])
+    retx_death_pvalue.append(retx_death_result[1])
+
+    #compute the mean difference of rewaitlist deaths and p-value
+    rewaitlist_result = compute_waitlist_death_diff(rewaitlist_death_base_case, num_of_rewaitlist_deaths[i])
+    rewaitlist_death_vector.append(rewaitlist_result[0])
+    rewaitlist_death_pvalue.append(rewaitlist_result[1])
+
     #compute the mean difference of mean meld and the p-value
     meld_mean_diff_result = compute_diff_mean(mean_meld_base_data, mean_meld_data[i])
     meld_mean_diff_vector.append(meld_mean_diff_result[0])
@@ -402,6 +522,12 @@ summary.append(death_diff_vector)
 summary.append(death_pvalue_vector)
 summary.append(waitlist_removal_mean_diff_vector)
 summary.append(waitlist_removal_mean_diff_pvalue_vector)
+summary.append(posttx_death_vector)
+summary.append(posttx_death_pvalue)
+summary.append(retx_death_vector)
+summary.append(retx_death_pvalue)
+summary.append(rewaitlist_death_vector)
+summary.append(rewaitlist_death_pvalue)
 summary.append(meld_mean_diff_vector)
 summary.append(meld_mean_diff_pvalue_vector)
 summary.append(std_meld_mean_diff_vector)
@@ -436,16 +562,18 @@ summary = pd.DataFrame(data = summary)
 summary.columns = cases
 
 #name the rows
-rows = ['Annualized Deaths', 'Annualized Deaths p-value', 'Annualized Waitlist Removals',\
-        'Annualized Waitlist Removals p-value', 'DSA Mean Transplant MELD', \
-        'DSA Mean Transplant MELD p-value', 'DSA Mean Transplant MELD Standard Deviation',\
-        'DSA Mean Transplant MELD Standard Deviation p-value', 'DSA Median Transplant MELD',\
+rows = ['Annualized Waitlist Deaths', 'Annualized Waitlist Deaths p-value', 'Annualized Waitlist Removals',\
+        'Annualized Waitlist Removals p-value', 'Annualized Post-Transplant Deaths', 'Annualized Post-Transplant Deaths p-value',\
+        'Annualized ReTransplant Deaths', 'Annualized ReTransplant Deaths p-value', \
+        'Annualized ReWaitlist Deaths', 'Annualized ReWaitlist Deaths p-value','DSA Mean Transplant MELD', \
+        'DSA Mean Transplant MELD p-value', 'DSA Mean Transplant Standard Deviation',\
+        'DSA Mean Transplant Standard Deviation p-value', 'DSA Median Transplant MELD',\
         'DSA Median Transplant MELD p-value', 'DSA Median Transplant MELD Standard Deviation',\
         'DSA Median Transplant MELD Standard Deviation p-value',\
-        'Average Organ Ground Vehicle Transport Distance', 'Average Organ Ground Vehicle Transport Distance p-value',\
+        'Average Organ Vehicle Transport Distance', 'Average Organ Vehicle Transport Distance p-value',\
         'Average Organ Helicopter Transport Distance', 'Average Organ Helicopter Transport Distance p-value',\
         'Average Organ Airplane Transport Distance', 'Average Organ Airplane Transport Distance p-value',\
-        'Average Organ Ground Vehicle Transport Time', 'Average Organ Ground Vehicle Transport Time p-value',\
+        'Average Organ Vehicle Transport Time', 'Average Organ Vehicle Transport Time p-value',\
         'Average Organ Helicopter Transport Time', 'Average Organ Helicopter Transport Time p-value',\
         'Average Organ Airplane Transport Time', 'Average Organ Airplane Transport Time p-value',\
         'Average Percentage Transported by Ground Vehicle', 'Average Percentage Transported by Ground Vehicle p-value',\
