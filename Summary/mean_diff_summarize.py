@@ -8,61 +8,127 @@ import pandas as pd
 import numpy as np
 from scipy.stats import t
 
-#Change Directory Here.
-base_directory = "C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/base(cap_and_delay)/"
-output_directory = "C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/"
-
 #list of cases
-cases = ['SRTR',
+cases = ['SRTR',\
+         'Share29_Share15_0boost(8district)',\
+         'Share29_Share18_3boost(8district)',\
+         'Share29_Share20_5boost(8district)',\
          'Share35_Share15_0boost(8district)',\
          'Share35_Share15_3boost(8district)',\
          'Share35_Share15_5boost(8district)',\
          'Share35_Share18_3boost(8district)',\
          'Share35_Share20_5boost(8district)',\
-         'Share35_Share15_0boost(LivSim(400))',\
-         'Share35_Share15_3boost(LivSim(400))',\
-         'Share35_Share15_5boost(LivSim(400))',\
-         'Share35_Share18_0boost(LivSim(400))',\
-         'Share35_Share18_3boost(LivSim(400))',\
-         'Share35_Share18_5boost(LivSim(400))',\
-         'Share35_Share20_0boost(LivSim(400))',\
-         'Share35_Share20_3boost(LivSim(400))',\
-         'Share35_Share20_5boost(LivSim(400))',\
-         'Share35_Share22_0boost(LivSim(400))',\
-         'Share35_Share22_3boost(LivSim(400))',\
-         'Share35_Share22_5boost(LivSim(400))',\
-         'Share35_Share15_0boost(LivSim(500))',\
-         'Share35_Share15_3boost(LivSim(500))',\
-         'Share35_Share15_5boost(LivSim(500))',\
-         'Share35_Share18_0boost(LivSim(500))',\
-         'Share35_Share18_3boost(LivSim(500))',\
-         'Share35_Share18_5boost(LivSim(500))',\
-         'Share35_Share20_0boost(LivSim(500))',\
-         'Share35_Share20_3boost(LivSim(500))',\
-         'Share35_Share20_5boost(LivSim(500))',\
-         'Share35_Share22_0boost(LivSim(500))',\
-         'Share35_Share22_3boost(LivSim(500))',\
-         'Share35_Share22_5boost(LivSim(500))',\
-         'Share35_Share15_0boost(LivSim(600))',\
-         'Share35_Share15_3boost(LivSim(600))',\
-         'Share35_Share15_5boost(LivSim(600))',\
-         'Share35_Share18_0boost(LivSim(600))',\
-         'Share35_Share18_3boost(LivSim(600))',\
-         'Share35_Share18_5boost(LivSim(600))',\
-         'Share35_Share20_0boost(LivSim(600))',\
-         'Share35_Share20_3boost(LivSim(600))',\
-         'Share35_Share20_5boost(LivSim(600))',\
-         'Share35_Share22_0boost(LivSim(600))',\
-         'Share35_Share22_3boost(LivSim(600))',\
-         'Share35_Share22_5boost(LivSim(600))']
+         'Share29_Share15_0boost(11district)',\
+         'Share29_Share18_3boost(11district)',\
+         'Share29_Share20_5boost(11district)',\
+         'Share35_Share18_3boost(11district)',\
+         'Share35_Share20_5boost(11district)',\
+         'Share35_Share18_0boost(11district)',\
+         'Share35_Share20_0boost(11district)',\
+         'Share29_Share15_0boost(400mile)',\
+         'Share29_Share18_3boost(400mile)',\
+         'Share29_Share20_5boost(400mile)',\
+         'Share35_Share15_0boost(400mile)',\
+         'Share35_Share15_3boost(400mile)',\
+         'Share35_Share15_5boost(400mile)',\
+         'Share35_Share18_0boost(400mile)',\
+         'Share35_Share18_3boost(400mile)',\
+         'Share35_Share18_5boost(400mile)',\
+         'Share35_Share20_0boost(400mile)',\
+         'Share35_Share20_3boost(400mile)',\
+         'Share35_Share20_5boost(400mile)',\
+         'Share35_Share22_0boost(400mile)',\
+         'Share35_Share22_3boost(400mile)',\
+         'Share35_Share22_5boost(400mile)',\
+         'Share29_Share15_0boost(500mile)',\
+         'Share29_Share18_3boost(500mile)',\
+         'Share29_Share20_5boost(500mile)',\
+         'Share35_Share15_0boost(500mile)',\
+         'Share35_Share15_3boost(500mile)',\
+         'Share35_Share15_5boost(500mile)',\
+         'Share35_Share18_0boost(500mile)',\
+         'Share35_Share18_3boost(500mile)',\
+         'Share35_Share18_5boost(500mile)',\
+         'Share35_Share20_0boost(500mile)',\
+         'Share35_Share20_3boost(500mile)',\
+         'Share35_Share20_5boost(500mile)',\
+         'Share35_Share22_0boost(500mile)',\
+         'Share35_Share22_3boost(500mile)',\
+         'Share35_Share22_5boost(500mile)',\
+         'Share29_Share15_0boost(600mile)',\
+         'Share29_Share18_3boost(600mile)',\
+         'Share29_Share20_5boost(600mile)',\
+         'Share35_Share15_0boost(600mile)',\
+         'Share35_Share15_3boost(600mile)',\
+         'Share35_Share15_5boost(600mile)',\
+         'Share35_Share18_0boost(600mile)',\
+         'Share35_Share18_3boost(600mile)',\
+         'Share35_Share18_5boost(600mile)',\
+         'Share35_Share20_0boost(600mile)',\
+         'Share35_Share20_3boost(600mile)',\
+         'Share35_Share20_5boost(600mile)',\
+         'Share35_Share22_0boost(600mile)',\
+         'Share35_Share22_3boost(600mile)',\
+         'Share35_Share22_5boost(600mile)',\
+         'Share29_Share15_0boost(Constrained400mile)',\
+         'Share29_Share18_3boost(Constrained400mile)',\
+         'Share29_Share20_5boost(Constrained400mile)',\
+         'Share35_Share15_0boost(Constrained400mile)',\
+         'Share35_Share15_3boost(Constrained400mile)',\
+         'Share35_Share15_5boost(Constrained400mile)',\
+         'Share35_Share18_0boost(Constrained400mile)',\
+         'Share35_Share18_3boost(Constrained400mile)',\
+         'Share35_Share18_5boost(Constrained400mile)',\
+         'Share35_Share20_0boost(Constrained400mile)',\
+         'Share35_Share20_3boost(Constrained400mile)',\
+         'Share35_Share20_5boost(Constrained400mile)',\
+         'Share29_Share15_0boost(Constrained500mile)',\
+         'Share29_Share18_3boost(Constrained500mile)',\
+         'Share29_Share20_5boost(Constrained500mile)',\
+         'Share35_Share15_0boost(Constrained500mile)',\
+         'Share35_Share15_3boost(Constrained500mile)',\
+         'Share35_Share15_5boost(Constrained500mile)',\
+         'Share35_Share18_0boost(Constrained500mile)',\
+         'Share35_Share18_3boost(Constrained500mile)',\
+         'Share35_Share18_5boost(Constrained500mile)',\
+         'Share35_Share20_0boost(Constrained500mile)',\
+         'Share35_Share20_3boost(Constrained500mile)',\
+         'Share35_Share20_5boost(Constrained500mile)',\
+         'Share29_Share15_0boost(Constrained600mile)',\
+         'Share29_Share18_3boost(Constrained600mile)',\
+         'Share29_Share20_5boost(Constrained600mile)',\
+         'Share35_Share15_0boost(Constrained600mile)',\
+         'Share35_Share15_3boost(Constrained600mile)',\
+         'Share35_Share15_5boost(Constrained600mile)',\
+         'Share35_Share18_0boost(Constrained600mile)',\
+         'Share35_Share18_3boost(Constrained600mile)',\
+         'Share35_Share18_5boost(Constrained600mile)',\
+         'Share35_Share20_0boost(Constrained600mile)',\
+         'Share35_Share20_3boost(Constrained600mile)',\
+         'Share35_Share20_5boost(Constrained600mile)']
+
+base_directory = "C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/base(cap_and_delay)/"
          
 #list of files
 files = ['C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/SRTR/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/8district/Share29_Share15_0boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/8district/Share29_Share18_3boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/8district/Share29_Share20_5boost/',\
          'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/8district/Share35_Share15_0boost/',\
          'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/8district/Share35_Share15_3boost/',\
          'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/8district/Share35_Share15_5boost/',\
          'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/8district/Share35_Share18_3boost/',\
          'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/8district/Share35_Share20_5boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/Current/Share29_Share15_0boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/Current/Share29_Share18_3boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/Current/Share29_Share20_5boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/Current/Share35_Share18_3boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/Current/Share35_Share20_5boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/Current/Share35_Share18_0boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/Current/Share35_Share20_0boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(400)/Share29_Share15_0boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(400)/Share29_Share18_3boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(400)/Share29_Share20_5boost/',\
          'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(400)/Share35_Share15_0boost/',\
          'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(400)/Share35_Share15_3boost/',\
          'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(400)/Share35_Share15_5boost/',\
@@ -75,6 +141,9 @@ files = ['C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/SRTR/',\
          'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(400)/Share35_Share22_0boost/',\
          'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(400)/Share35_Share22_3boost/',\
          'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(400)/Share35_Share22_5boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(500)/Share29_Share15_0boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(500)/Share29_Share18_3boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(500)/Share29_Share20_5boost/',\
          'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(500)/Share35_Share15_0boost/',\
          'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(500)/Share35_Share15_3boost/',\
          'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(500)/Share35_Share15_5boost/',\
@@ -87,6 +156,9 @@ files = ['C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/SRTR/',\
          'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(500)/Share35_Share22_0boost/',\
          'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(500)/Share35_Share22_3boost/',\
          'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(500)/Share35_Share22_5boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(600)/Share29_Share15_0boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(600)/Share29_Share18_3boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(600)/Share29_Share20_5boost/',\
          'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(600)/Share35_Share15_0boost/',\
          'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(600)/Share35_Share15_3boost/',\
          'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(600)/Share35_Share15_5boost/',\
@@ -98,7 +170,43 @@ files = ['C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/SRTR/',\
          'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(600)/Share35_Share20_5boost/',\
          'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(600)/Share35_Share22_0boost/',\
          'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(600)/Share35_Share22_3boost/',\
-         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(600)/Share35_Share22_5boost/']
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/LivSim(600)/Share35_Share22_5boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/ConstrainedLivSim(400)/Share29_Share15_0boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/ConstrainedLivSim(400)/Share29_Share18_3boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/ConstrainedLivSim(400)/Share29_Share20_5boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/ConstrainedLivSim(400)/Share35_Share15_0boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/ConstrainedLivSim(400)/Share35_Share15_3boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/ConstrainedLivSim(400)/Share35_Share15_5boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/ConstrainedLivSim(400)/Share35_Share18_0boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/ConstrainedLivSim(400)/Share35_Share18_3boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/ConstrainedLivSim(400)/Share35_Share18_5boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/ConstrainedLivSim(400)/Share35_Share20_0boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/ConstrainedLivSim(400)/Share35_Share20_3boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/ConstrainedLivSim(400)/Share35_Share20_5boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/ConstrainedLivSim(500)/Share29_Share15_0boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/ConstrainedLivSim(500)/Share29_Share18_3boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/ConstrainedLivSim(500)/Share29_Share20_5boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/ConstrainedLivSim(500)/Share35_Share15_0boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/ConstrainedLivSim(500)/Share35_Share15_3boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/ConstrainedLivSim(500)/Share35_Share15_5boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/ConstrainedLivSim(500)/Share35_Share18_0boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/ConstrainedLivSim(500)/Share35_Share18_3boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/ConstrainedLivSim(500)/Share35_Share18_5boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/ConstrainedLivSim(500)/Share35_Share20_0boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/ConstrainedLivSim(500)/Share35_Share20_3boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/ConstrainedLivSim(500)/Share35_Share20_5boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/ConstrainedLivSim(600)/Share29_Share15_0boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/ConstrainedLivSim(600)/Share29_Share18_3boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/ConstrainedLivSim(600)/Share29_Share20_5boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/ConstrainedLivSim(600)/Share35_Share15_0boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/ConstrainedLivSim(600)/Share35_Share15_3boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/ConstrainedLivSim(600)/Share35_Share15_5boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/ConstrainedLivSim(600)/Share35_Share18_0boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/ConstrainedLivSim(600)/Share35_Share18_3boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/ConstrainedLivSim(600)/Share35_Share18_5boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/ConstrainedLivSim(600)/Share35_Share20_0boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/ConstrainedLivSim(600)/Share35_Share20_3boost/',\
+         'C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/ConstrainedLivSim(600)/Share35_Share20_5boost/']
 
 def compute_waitlist_death_diff(base_case, new_case):
     """
@@ -128,13 +236,16 @@ def compute_waitlist_death_diff(base_case, new_case):
     diff = average_new - average_base
     
     #compute the t score
-    t_score =  diff/np.sqrt(var_base/n_base+var_new/n_new)
+    t_score =  np.absolute(diff)/np.sqrt(var_base/n_base+var_new/n_new)
+    
+    #compute degrees of freedom
+    #df = ((var_base/n_base + var_new/n_new)**2)/(((var_base/n_base)**2)/(n_base-1) + ((var_new/n_new)**2)/(n_new-1))
     
     #compute p_value
-    p_value = t.cdf(t_score, min(n_base-1,n_new-1))
+    p_value = t.cdf(t_score, min(n_base-1, n_new-1))
     
     #return results
-    return diff, p_value
+    return diff, 2*(1-p_value)
     
 
 def compute_waitlist_removal_diff(base_case, new_case):
@@ -161,7 +272,7 @@ def compute_waitlist_removal_diff(base_case, new_case):
     average_base = np.mean(row_sum_base)
     average_new = np.mean(row_sum_new)
     
-    #compute the mean difference
+    #compute the difference of deaths
     diff = average_new - average_base
     
     #compute the variance of removals
@@ -169,13 +280,16 @@ def compute_waitlist_removal_diff(base_case, new_case):
     var_new = np.var(row_sum_new)
     
     #compute t-score
-    t_score =  diff/np.sqrt(var_base/n_base+var_new/n_new)
+    t_score =  np.absolute(diff)/np.sqrt(var_base/n_base+var_new/n_new)
+    
+    #compute degrees of freedom
+    #df = ((var_base/n_base + var_new/n_new)**2)/(((var_base/n_base)**2)/(n_base-1) + ((var_new/n_new)**2)/(n_new-1))
     
     #compute p-value
-    p_value = t.cdf(t_score, min(n_base-1,n_new-1))
+    p_value = t.cdf(t_score, min(n_base-1, n_new-1))
     
     #return result
-    return diff, p_value
+    return diff, 2*(1-p_value)
 
 def compute_diff_mean(base_case, new_case):
     """
@@ -201,17 +315,20 @@ def compute_diff_mean(base_case, new_case):
     var_base = np.var(base_case.iloc[:,0])
     var_new = np.var(new_case.iloc[:,0])
     
-    #compute the difference
-    diff = average_new-average_base
+    #compute the difference of deaths
+    diff = average_new - average_base
     
     #compute t-score
-    t_score =  diff/np.sqrt(var_base/n_base+var_new/n_new)
+    t_score =  np.absolute(diff)/np.sqrt(var_base/n_base+var_new/n_new)
+    
+    #compute degrees of freedom
+    #df = ((var_base/n_base + var_new/n_new)**2)/(((var_base/n_base)**2)/(n_base-1) + ((var_new/n_new)**2)/(n_new-1))
     
     #compute the p-value
-    p_value = t.cdf(t_score, min(n_base-1,n_new-1))
+    p_value = t.cdf(t_score, min(n_base-1, n_new-1))
     
     #return result
-    return diff, p_value
+    return diff, 2*(1-p_value)
 
 #read in total number of waitlist deaths for base case
 death_base_case = pd.read_csv(base_directory + "Output_deaths.csv")
@@ -581,4 +698,4 @@ rows = ['Annualized Waitlist Deaths', 'Annualized Waitlist Deaths p-value', 'Ann
         'Average Percentage Transported by Airplane', 'Average Percentage Transported by Airplane p-value']
 summary.index = rows
 
-summary.to_csv(output_directory + "summary.csv")
+summary.to_csv("C:/Users/kbui1993/Desktop/New Results/Cap_and_Delay/summary.csv")
