@@ -27,7 +27,7 @@ def Allocate(organ, OPTN, Sim, Regions, SharingPartners, Patients_Accept, Donor_
     NationalList =[] #preinitialize list of potential match patients outside a region within the nation
 
     #Give boost to local candidates if applicable
-    if Sim.localboost[organ.DSA][2] > 0:
+    if Sim.localboost > 0:
         #iterate through patients of local list
         for patient in LocalList:
 
