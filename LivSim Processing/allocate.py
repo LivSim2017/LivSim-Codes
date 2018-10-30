@@ -35,7 +35,7 @@ def Allocate(organ, OPTN, Sim, Regions, SharingPartners, Patients_Accept, Donor_
             if patient.MELD <=40:
                 
                 #Boosting non-Status1 candidates
-                patient.MELD = patient.MELD + Sim.localboost[organ.DSA][2]
+                patient.MELD = patient.MELD + Sim.localboost
                 
                 #if MELD score is over 40, set it down to 40 as the max
                 if patient.MELD > 40:
